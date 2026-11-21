@@ -1,0 +1,22 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	valueFilterBehavior: independent
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_QueryOrder = ["DataFolder","Employees","Driver Segments"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table Employees
+ref table 'Driver Segments'
+ref table _Measures
+ref table 'Key Findings'
+
+ref cultureInfo en-US
+

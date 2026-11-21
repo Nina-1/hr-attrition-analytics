@@ -1,0 +1,608 @@
+table Employees
+	lineageTag: f154de2e-c075-4d77-944f-d4169c14f381
+
+	column 'Employee ID'
+		dataType: string
+		lineageTag: 34297052-2253-4e91-b65c-2f18f1270f8f
+		summarizeBy: none
+		sourceColumn: Employee ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Employee Number'
+		dataType: int64
+		isHidden
+		lineageTag: 889000e5-c245-4719-bad0-c2e37f7bde74
+		summarizeBy: none
+		sourceColumn: Employee Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column Age
+		dataType: int64
+		lineageTag: bcfd4acf-6f09-4abd-a2b2-4bbc3beb9345
+		summarizeBy: none
+		sourceColumn: Age
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Age Group'
+		dataType: string
+		lineageTag: 855ef9ab-9719-4520-b216-c743952a8efa
+		summarizeBy: none
+		sourceColumn: Age Group
+		sortByColumn: 'Age Group Order'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Attrition
+		dataType: string
+		lineageTag: 90506bdf-1da4-453c-b439-47bef314bbe5
+		summarizeBy: none
+		sourceColumn: Attrition
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status
+		dataType: string
+		lineageTag: 05f16e2b-a5d0-4d38-99d0-153532b990ed
+		summarizeBy: none
+		sourceColumn: Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Attrition Flag'
+		dataType: int64
+		isHidden
+		lineageTag: 8fb9c3ec-f440-4f3e-b959-26432f096002
+		summarizeBy: none
+		sourceColumn: Attrition Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Business Travel'
+		dataType: string
+		lineageTag: 2c8022b5-cef1-458c-938f-9fc181a47384
+		summarizeBy: none
+		sourceColumn: Business Travel
+		sortByColumn: 'Business Travel Order'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Department
+		dataType: string
+		lineageTag: 9139ddba-1638-4351-afc8-961a77bb127e
+		summarizeBy: none
+		sourceColumn: Department
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Distance From Home'
+		dataType: int64
+		lineageTag: 3122bca0-9b72-4748-a5b8-90fc37bad1d4
+		summarizeBy: none
+		sourceColumn: Distance From Home
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Distance Band'
+		dataType: string
+		lineageTag: 0311873e-5739-4963-8a97-e82f356b2ee5
+		summarizeBy: none
+		sourceColumn: Distance Band
+		sortByColumn: 'Distance Band Order'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Education
+		dataType: int64
+		isHidden
+		lineageTag: f199c4b5-6b9f-4e41-8301-6ef056dce500
+		summarizeBy: none
+		sourceColumn: Education
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Education Level'
+		dataType: string
+		lineageTag: 04ec21bf-0bda-45c2-af9f-a69ca962d080
+		summarizeBy: none
+		sourceColumn: Education Level
+		sortByColumn: Education
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Education Field'
+		dataType: string
+		lineageTag: c5293e4a-5731-484d-8cbc-5c7edf3e279f
+		summarizeBy: none
+		sourceColumn: Education Field
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Environment Satisfaction'
+		dataType: int64
+		lineageTag: e822d80f-dfa7-4fed-a829-36b663d93c79
+		summarizeBy: none
+		sourceColumn: Environment Satisfaction
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Environment Satisfaction Level'
+		dataType: string
+		lineageTag: e3e40095-26dc-42c1-b9ae-364753e04239
+		summarizeBy: none
+		sourceColumn: Environment Satisfaction Level
+		sortByColumn: 'Environment Satisfaction'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Gender
+		dataType: string
+		lineageTag: bde65dbb-2eb1-4d69-8460-19e74a0764bc
+		summarizeBy: none
+		sourceColumn: Gender
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Job Involvement'
+		dataType: int64
+		lineageTag: d6ed469f-8168-4241-84b6-e11b91a50423
+		summarizeBy: none
+		sourceColumn: Job Involvement
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Job Involvement Level'
+		dataType: string
+		lineageTag: 0f352ef5-6c2e-4f45-9f0c-d79b0ce705e1
+		summarizeBy: none
+		sourceColumn: Job Involvement Level
+		sortByColumn: 'Job Involvement'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Job Level'
+		dataType: int64
+		lineageTag: cdafc53b-877e-4787-973c-8322468e82fc
+		summarizeBy: none
+		sourceColumn: Job Level
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Job Level Label'
+		dataType: string
+		lineageTag: fd20396f-06d4-4bdf-896d-1b6afe5b3a27
+		summarizeBy: none
+		sourceColumn: Job Level Label
+		sortByColumn: 'Job Level'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Job Role'
+		dataType: string
+		lineageTag: a1016d0d-9b6c-483d-a60e-9eaedc6463d3
+		summarizeBy: none
+		sourceColumn: Job Role
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Job Satisfaction'
+		dataType: int64
+		lineageTag: 46f3cb20-d06e-4bc5-9fec-cc4bac74f3ec
+		summarizeBy: none
+		sourceColumn: Job Satisfaction
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Job Satisfaction Level'
+		dataType: string
+		lineageTag: a7702560-85c8-4961-a8ff-42d0e5a31363
+		summarizeBy: none
+		sourceColumn: Job Satisfaction Level
+		sortByColumn: 'Job Satisfaction'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Marital Status'
+		dataType: string
+		lineageTag: 28811664-7957-47f8-b266-986ca81d296d
+		summarizeBy: none
+		sourceColumn: Marital Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Monthly Income'
+		dataType: int64
+		formatString: #,0
+		lineageTag: 0dffe628-4b9d-4edb-a17f-5f53b349d66e
+		summarizeBy: none
+		sourceColumn: Monthly Income
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Salary Slab'
+		dataType: string
+		lineageTag: 7f7b5e4f-0b37-47bb-8652-b6990cb21892
+		summarizeBy: none
+		sourceColumn: Salary Slab
+		sortByColumn: 'Salary Slab Order'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Companies Worked'
+		dataType: int64
+		lineageTag: 321b3be8-b5b9-4622-bdfc-31ed945900f9
+		summarizeBy: none
+		sourceColumn: Companies Worked
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Prior Companies Band'
+		dataType: string
+		lineageTag: 34ba1260-dc48-40d7-b679-c9e73c79ad08
+		summarizeBy: none
+		sourceColumn: Prior Companies Band
+		sortByColumn: 'Prior Companies Band Order'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Overtime
+		dataType: string
+		lineageTag: e2b76dae-45b0-4a0e-915c-1e7370c9d2bc
+		summarizeBy: none
+		sourceColumn: Overtime
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Salary Hike %'
+		dataType: int64
+		lineageTag: 73cebcf1-3228-4199-b36e-ca06884d6560
+		summarizeBy: none
+		sourceColumn: Salary Hike %
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Performance Rating'
+		dataType: int64
+		lineageTag: 81c6770f-3146-46dc-b16c-67c010437094
+		summarizeBy: none
+		sourceColumn: Performance Rating
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Relationship Satisfaction'
+		dataType: int64
+		lineageTag: 38c21f8d-5375-46b5-8cd1-9c26442cdec8
+		summarizeBy: none
+		sourceColumn: Relationship Satisfaction
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Relationship Satisfaction Level'
+		dataType: string
+		lineageTag: a354aa15-05fb-4ebc-b9ba-e981f56ef386
+		summarizeBy: none
+		sourceColumn: Relationship Satisfaction Level
+		sortByColumn: 'Relationship Satisfaction'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Stock Option Level'
+		dataType: int64
+		lineageTag: f722cb9e-1480-41e5-89f5-cc35946f5b2d
+		summarizeBy: none
+		sourceColumn: Stock Option Level
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Stock Options'
+		dataType: string
+		lineageTag: 7e356926-87fa-4fac-852d-50ed3ab6f9ff
+		summarizeBy: none
+		sourceColumn: Stock Options
+		sortByColumn: 'Stock Option Level'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Total Working Years'
+		dataType: int64
+		lineageTag: 586df61a-d721-4bb6-b41c-193a1bf39c3f
+		summarizeBy: none
+		sourceColumn: Total Working Years
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Trainings Last Year'
+		dataType: int64
+		lineageTag: f63b564e-f2b2-4953-ab07-5169f3996199
+		summarizeBy: none
+		sourceColumn: Trainings Last Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Work-Life Balance'
+		dataType: int64
+		lineageTag: 2794a8a3-611e-4e86-b7a4-385c25b76953
+		summarizeBy: none
+		sourceColumn: Work-Life Balance
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Work-Life Balance Level'
+		dataType: string
+		lineageTag: 1028eebd-4e7b-4834-b2c8-534a58d1f92d
+		summarizeBy: none
+		sourceColumn: Work-Life Balance Level
+		sortByColumn: 'Work-Life Balance'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Years at Company'
+		dataType: int64
+		lineageTag: 46f41f4c-db40-48ad-8f8c-eac7d371fede
+		summarizeBy: none
+		sourceColumn: Years at Company
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tenure Year'
+		dataType: string
+		lineageTag: 1826acda-201f-495f-b4ad-5eb19b4ce662
+		summarizeBy: none
+		sourceColumn: Tenure Year
+		sortByColumn: 'Tenure Year Order'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tenure Year Order'
+		dataType: int64
+		isHidden
+		lineageTag: bf7f6f47-77bd-4b98-a528-30280fb047f8
+		summarizeBy: none
+		sourceColumn: Tenure Year Order
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tenure Band'
+		dataType: string
+		lineageTag: 3e9ff98a-8348-4a43-85b3-9c6d940d22f8
+		summarizeBy: none
+		sourceColumn: Tenure Band
+		sortByColumn: 'Tenure Band Order'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Years in Current Role'
+		dataType: int64
+		lineageTag: 99db6a01-ab96-41b2-b038-736c478b59a7
+		summarizeBy: none
+		sourceColumn: Years in Current Role
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Years in Role Band'
+		dataType: string
+		lineageTag: 2693b059-878e-4f40-9b2d-7597ec17e240
+		summarizeBy: none
+		sourceColumn: Years in Role Band
+		sortByColumn: 'Years in Role Band Order'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Years Since Promotion'
+		dataType: int64
+		lineageTag: 32f4b6d5-1939-40b6-a251-71220a510d22
+		summarizeBy: none
+		sourceColumn: Years Since Promotion
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Promotion Gap Band'
+		dataType: string
+		lineageTag: 81fae78f-43e2-44b2-91e9-ce08c619370b
+		summarizeBy: none
+		sourceColumn: Promotion Gap Band
+		sortByColumn: 'Promotion Gap Band Order'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Years with Manager'
+		dataType: int64
+		lineageTag: 76b389db-76b2-4261-8a3e-c564bfad1561
+		summarizeBy: none
+		sourceColumn: Years with Manager
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Manager Tenure Band'
+		dataType: string
+		lineageTag: 45f17150-28c8-41d2-b617-8b0181bb2149
+		summarizeBy: none
+		sourceColumn: Manager Tenure Band
+		sortByColumn: 'Manager Tenure Band Order'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Risk Factors'
+		dataType: string
+		lineageTag: 7094496d-508f-4712-8f92-e732456074b8
+		summarizeBy: none
+		sourceColumn: Risk Factors
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Risk Score'
+		dataType: int64
+		lineageTag: e38198aa-4ec2-4cd1-9408-e7f8a5d8a566
+		summarizeBy: none
+		sourceColumn: Risk Score
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Risk Tier'
+		dataType: string
+		lineageTag: 97e49f78-41f6-4b35-a6f2-883a04b37dc8
+		summarizeBy: none
+		sourceColumn: Risk Tier
+		sortByColumn: 'Risk Tier Order'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Age Group Order'
+		dataType: int64
+		isHidden
+		lineageTag: 15bd419c-f126-402f-8cb7-1bfe39ae05e5
+		summarizeBy: none
+		sourceColumn: Age Group Order
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Business Travel Order'
+		dataType: int64
+		isHidden
+		lineageTag: 4c58d87e-09c9-42fd-ac67-7cb69a804fb5
+		summarizeBy: none
+		sourceColumn: Business Travel Order
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Salary Slab Order'
+		dataType: int64
+		isHidden
+		lineageTag: afedce0a-389f-45c3-9dab-b9d32c73e0e2
+		summarizeBy: none
+		sourceColumn: Salary Slab Order
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tenure Band Order'
+		dataType: int64
+		isHidden
+		lineageTag: 66b928dc-f745-4455-ab6c-4a6b7715dc26
+		summarizeBy: none
+		sourceColumn: Tenure Band Order
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Years in Role Band Order'
+		dataType: int64
+		isHidden
+		lineageTag: 5d37307d-f0c6-49d3-aa59-8e5e490b4d76
+		summarizeBy: none
+		sourceColumn: Years in Role Band Order
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Manager Tenure Band Order'
+		dataType: int64
+		isHidden
+		lineageTag: aca4a28c-409a-44f6-94ce-847e57c5c792
+		summarizeBy: none
+		sourceColumn: Manager Tenure Band Order
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Promotion Gap Band Order'
+		dataType: int64
+		isHidden
+		lineageTag: c2da1526-2dc8-478b-8579-0f2cc9d26b24
+		summarizeBy: none
+		sourceColumn: Promotion Gap Band Order
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Distance Band Order'
+		dataType: int64
+		isHidden
+		lineageTag: 74e419c2-69de-4dc8-b328-99f0feea3b03
+		summarizeBy: none
+		sourceColumn: Distance Band Order
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Prior Companies Band Order'
+		dataType: int64
+		isHidden
+		lineageTag: 16e7f160-a1a6-4192-b499-a07211c56278
+		summarizeBy: none
+		sourceColumn: Prior Companies Band Order
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Risk Tier Order'
+		dataType: int64
+		isHidden
+		lineageTag: 23ebbc3b-9059-43b3-92f4-5755c6e076a2
+		summarizeBy: none
+		sourceColumn: Risk Tier Order
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Employees = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "\HR_Analytics Data Set.csv"), [Delimiter = ",", Columns = 38, Encoding = 65001, QuoteStyle = QuoteStyle.None]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    BlankManager = Table.ReplaceValue(Promoted, "", null, Replacer.ReplaceValue, {"YearsWithCurrManager"}),
+				    Typed = Table.TransformColumnTypes(BlankManager, {{"EmpID", type text}, {"Age", Int64.Type}, {"AgeGroup", type text}, {"Attrition", type text}, {"BusinessTravel", type text}, {"Department", type text}, {"DistanceFromHome", Int64.Type}, {"Education", Int64.Type}, {"EducationField", type text}, {"EmployeeNumber", Int64.Type}, {"EnvironmentSatisfaction", Int64.Type}, {"Gender", type text}, {"JobInvolvement", Int64.Type}, {"JobLevel", Int64.Type}, {"JobRole", type text}, {"JobSatisfaction", Int64.Type}, {"MaritalStatus", type text}, {"MonthlyIncome", Int64.Type}, {"SalarySlab", type text}, {"NumCompaniesWorked", Int64.Type}, {"OverTime", type text}, {"PercentSalaryHike", Int64.Type}, {"PerformanceRating", Int64.Type}, {"RelationshipSatisfaction", Int64.Type}, {"StockOptionLevel", Int64.Type}, {"TotalWorkingYears", Int64.Type}, {"TrainingTimesLastYear", Int64.Type}, {"WorkLifeBalance", Int64.Type}, {"YearsAtCompany", Int64.Type}, {"YearsInCurrentRole", Int64.Type}, {"YearsSinceLastPromotion", Int64.Type}, {"YearsWithCurrManager", Int64.Type}}),
+				    // 10 employees appear twice in the source extract; keep the first record per EmpID
+				    Deduped = Table.Distinct(Table.Buffer(Typed), {"EmpID"}),
+				    Cleaned = Table.TransformColumns(Deduped, {
+				        {"BusinessTravel", each if _ = "Travel_Rarely" or _ = "TravelRarely" then "Travel Rarely" else if _ = "Travel_Frequently" then "Travel Frequently" else _, type text},
+				        {"SalarySlab", each if _ = "Upto 5k" then "Up to 5k" else _, type text}}),
+				    Renamed = Table.RenameColumns(Cleaned, {{"EmpID", "Employee ID"}, {"AgeGroup", "Age Group"}, {"BusinessTravel", "Business Travel"}, {"DistanceFromHome", "Distance From Home"}, {"EducationField", "Education Field"}, {"EmployeeNumber", "Employee Number"}, {"EnvironmentSatisfaction", "Environment Satisfaction"}, {"JobInvolvement", "Job Involvement"}, {"JobLevel", "Job Level"}, {"JobRole", "Job Role"}, {"JobSatisfaction", "Job Satisfaction"}, {"MaritalStatus", "Marital Status"}, {"MonthlyIncome", "Monthly Income"}, {"SalarySlab", "Salary Slab"}, {"NumCompaniesWorked", "Companies Worked"}, {"OverTime", "Overtime"}, {"PercentSalaryHike", "Salary Hike %"}, {"PerformanceRating", "Performance Rating"}, {"RelationshipSatisfaction", "Relationship Satisfaction"}, {"StockOptionLevel", "Stock Option Level"}, {"TotalWorkingYears", "Total Working Years"}, {"TrainingTimesLastYear", "Trainings Last Year"}, {"WorkLifeBalance", "Work-Life Balance"}, {"YearsAtCompany", "Years at Company"}, {"YearsInCurrentRole", "Years in Current Role"}, {"YearsSinceLastPromotion", "Years Since Promotion"}, {"YearsWithCurrManager", "Years with Manager"}}),
+				    AddStatus = Table.AddColumn(Renamed, "Status", each if [Attrition] = "Yes" then "Left" else "Stayed", type text),
+				    AddFlag = Table.AddColumn(AddStatus, "Attrition Flag", each if [Attrition] = "Yes" then 1 else 0, Int64.Type),
+				    AddLevel = Table.AddColumn(AddFlag, "Job Level Label", each "Level " & Text.From([Job Level]), type text),
+				    AddEdu = Table.AddColumn(AddLevel, "Education Level", each {"Below College", "College", "Bachelor", "Master", "Doctor"}{[Education] - 1}, type text),
+				    AddJobSat = Table.AddColumn(AddEdu, "Job Satisfaction Level", each {"Low", "Medium", "High", "Very High"}{[Job Satisfaction] - 1}, type text),
+				    AddEnvSat = Table.AddColumn(AddJobSat, "Environment Satisfaction Level", each {"Low", "Medium", "High", "Very High"}{[Environment Satisfaction] - 1}, type text),
+				    AddRelSat = Table.AddColumn(AddEnvSat, "Relationship Satisfaction Level", each {"Low", "Medium", "High", "Very High"}{[Relationship Satisfaction] - 1}, type text),
+				    AddInvolve = Table.AddColumn(AddRelSat, "Job Involvement Level", each {"Low", "Medium", "High", "Very High"}{[Job Involvement] - 1}, type text),
+				    AddWlb = Table.AddColumn(AddInvolve, "Work-Life Balance Level", each {"Bad", "Good", "Better", "Best"}{[#"Work-Life Balance"] - 1}, type text),
+				    AddStock = Table.AddColumn(AddWlb, "Stock Options", each {"None", "Low", "Medium", "High"}{[Stock Option Level]}, type text),
+				    AddTenure = Table.AddColumn(AddStock, "Tenure Band", each if [Years at Company] < 1 then "<1 yr" else if [Years at Company] <= 2 then "1-2 yrs" else if [Years at Company] <= 5 then "3-5 yrs" else if [Years at Company] <= 10 then "6-10 yrs" else "10+ yrs", type text),
+				    AddRole = Table.AddColumn(AddTenure, "Years in Role Band", each if [Years in Current Role] <= 1 then "0-1 yrs" else if [Years in Current Role] <= 4 then "2-4 yrs" else "5+ yrs", type text),
+				    AddManager = Table.AddColumn(AddRole, "Manager Tenure Band", each if [Years with Manager] = null then "Unknown" else if [Years with Manager] <= 1 then "0-1 yrs" else if [Years with Manager] <= 4 then "2-4 yrs" else "5+ yrs", type text),
+				    AddPromo = Table.AddColumn(AddManager, "Promotion Gap Band", each if [Years Since Promotion] <= 1 then "0-1 yrs" else if [Years Since Promotion] <= 4 then "2-4 yrs" else if [Years Since Promotion] <= 7 then "5-7 yrs" else "8+ yrs", type text),
+				    AddDistance = Table.AddColumn(AddPromo, "Distance Band", each if [Distance From Home] <= 5 then "0-5" else if [Distance From Home] <= 10 then "6-10" else if [Distance From Home] <= 20 then "11-20" else "21+", type text),
+				    AddTenureYear = Table.AddColumn(AddDistance, "Tenure Year", each if [Years at Company] >= 20 then "20+" else Text.From([Years at Company]), type text),
+				    AddTenureYearOrder = Table.AddColumn(AddTenureYear, "Tenure Year Order", each List.Min({[Years at Company], 20}), Int64.Type),
+				    AddPrior = Table.AddColumn(AddTenureYearOrder, "Prior Companies Band", each if [Companies Worked] <= 1 then "0-1 companies" else if [Companies Worked] <= 4 then "2-4 companies" else "5+ companies", type text),
+				    AddOrders = List.Accumulate(
+				        {
+				            {"Age Group", {"18-25", "26-35", "36-45", "46-55", "55+"}},
+				            {"Business Travel", {"Non-Travel", "Travel Rarely", "Travel Frequently"}},
+				            {"Salary Slab", {"Up to 5k", "5k-10k", "10k-15k", "15k+"}},
+				            {"Tenure Band", {"<1 yr", "1-2 yrs", "3-5 yrs", "6-10 yrs", "10+ yrs"}},
+				            {"Years in Role Band", {"0-1 yrs", "2-4 yrs", "5+ yrs"}},
+				            {"Manager Tenure Band", {"0-1 yrs", "2-4 yrs", "5+ yrs", "Unknown"}},
+				            {"Promotion Gap Band", {"0-1 yrs", "2-4 yrs", "5-7 yrs", "8+ yrs"}},
+				            {"Distance Band", {"0-5", "6-10", "11-20", "21+"}},
+				            {"Prior Companies Band", {"0-1 companies", "2-4 companies", "5+ companies"}}
+				        },
+				        AddPrior,
+				        (t, spec) => Table.AddColumn(t, spec{0} & " Order", (r) => List.PositionOf(spec{1}, Record.Field(r, spec{0})) + 1, Int64.Type)),
+				    // Risk index: one point per historically high-attrition attribute
+				    AddFactors = Table.AddColumn(AddOrders, "Risk Factors", each Text.Combine(List.RemoveNulls({
+				        if [Overtime] = "Yes" then "Overtime" else null,
+				        if [Job Level] = 1 then "Entry level" else null,
+				        if [Marital Status] = "Single" then "Single" else null,
+				        if [Years at Company] <= 2 then "Tenure 2 yrs or less" else null,
+				        if [Job Satisfaction] = 1 then "Low job satisfaction" else null,
+				        if [Environment Satisfaction] = 1 then "Low environment satisfaction" else null,
+				        if [#"Work-Life Balance"] = 1 then "Poor work-life balance" else null,
+				        if [Business Travel] = "Travel Frequently" then "Frequent travel" else null,
+				        if [Stock Option Level] = 0 then "No stock options" else null,
+				        if [Age] <= 25 then "Age 25 or under" else null}), " · "), type text),
+				    AddScore = Table.AddColumn(AddFactors, "Risk Score", each if [Risk Factors] = "" then 0 else List.Count(Text.Split([Risk Factors], " · ")), Int64.Type),
+				    AddTier = Table.AddColumn(AddScore, "Risk Tier", each if [Risk Score] >= 5 then "Critical" else if [Risk Score] = 4 then "High" else if [Risk Score] = 3 then "Elevated" else "Low", type text),
+				    AddTierOrder = Table.AddColumn(AddTier, "Risk Tier Order", each List.PositionOf({"Low", "Elevated", "High", "Critical"}, [Risk Tier]) + 1, Int64.Type),
+				    Result = Table.SelectColumns(AddTierOrder, {"Employee ID", "Employee Number", "Age", "Age Group", "Attrition", "Status", "Attrition Flag", "Business Travel", "Department", "Distance From Home", "Distance Band", "Education", "Education Level", "Education Field", "Environment Satisfaction", "Environment Satisfaction Level", "Gender", "Job Involvement", "Job Involvement Level", "Job Level", "Job Level Label", "Job Role", "Job Satisfaction", "Job Satisfaction Level", "Marital Status", "Monthly Income", "Salary Slab", "Companies Worked", "Prior Companies Band", "Overtime", "Salary Hike %", "Performance Rating", "Relationship Satisfaction", "Relationship Satisfaction Level", "Stock Option Level", "Stock Options", "Total Working Years", "Trainings Last Year", "Work-Life Balance", "Work-Life Balance Level", "Years at Company", "Tenure Year", "Tenure Year Order", "Tenure Band", "Years in Current Role", "Years in Role Band", "Years Since Promotion", "Promotion Gap Band", "Years with Manager", "Manager Tenure Band", "Risk Factors", "Risk Score", "Risk Tier", "Age Group Order", "Business Travel Order", "Salary Slab Order", "Tenure Band Order", "Years in Role Band Order", "Manager Tenure Band Order", "Promotion Gap Band Order", "Distance Band Order", "Prior Companies Band Order", "Risk Tier Order"})
+				in
+				    Result
+
+	annotation PBI_ResultType = Table
+

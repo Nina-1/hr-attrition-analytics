@@ -1,0 +1,36 @@
+table 'Key Findings'
+	lineageTag: c91d7848-3bf9-4637-940b-e44119930c09
+
+	column Order
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: f3ff573f-9399-472d-97da-072e87e91933
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Order]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Finding =
+			SWITCH (
+			    'Key Findings'[Order],
+				1, "•  " & ( FORMAT ( [Attrition Rate], "0.0%" ) & " attrition: " & FORMAT ( [Leavers], "#,0" ) & " of " & FORMAT ( [Headcount], "#,0" ) & " employees have left" ),
+				2, "•  " & ( "Overtime multiplies the risk " & FORMAT ( [Overtime Multiplier], "0.0" ) & " times (" & FORMAT ( [Attrition Rate (Overtime)], "0.0%" ) & " vs " & FORMAT ( [Attrition Rate (No Overtime)], "0.0%" ) & ")" ),
+				3, "•  " & ( "Entry-level staff on overtime: " & FORMAT ( CALCULATE ( [Attrition Rate], Employees[Overtime] = "Yes", Employees[Job Level] = 1 ), "0.0%" ) & " attrition" ),
+				4, "•  " & ( "The first 2 years are critical: " & FORMAT ( [Attrition Rate (First 2 Years)], "0.0%" ) & " attrition vs " & FORMAT ( [Attrition Rate (10+ Years)], "0.0%" ) & " after 10 years" ),
+				5, "•  " & ( VAR _role = MAXX ( TOPN ( 1, VALUES ( Employees[Job Role] ), [Attrition Rate], DESC ), Employees[Job Role] )
+				RETURN _role & " is the highest-risk role (" & FORMAT ( CALCULATE ( [Attrition Rate], Employees[Job Role] = _role ), "0.0%" ) & ")" ),
+				6, "•  " & ( FORMAT ( [High-Risk Active Employees], "#,0" ) & " current employees carry 4+ risk factors" )
+			)
+		dataType: string
+		lineageTag: 565e7f86-327e-44b7-a4f0-509796c4d25a
+		summarizeBy: none
+		sortByColumn: Order
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Key Findings' = calculated
+		mode: import
+		source = SELECTCOLUMNS ( GENERATESERIES ( 1, 6, 1 ), "Order", [Value] )
+

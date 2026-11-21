@@ -1,0 +1,155 @@
+table 'Driver Segments'
+	lineageTag: 5d2fa68a-3813-4a22-af72-d202ddfd45ed
+
+	column Driver
+		dataType: string
+		lineageTag: 5d68d083-252d-4365-81c8-213be30a4272
+		summarizeBy: none
+		sourceColumn: Driver
+		sortByColumn: 'Driver Order'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Driver Order'
+		dataType: int64
+		isHidden
+		lineageTag: b8ebcf17-61ad-4782-8d74-cc6cd68b6f32
+		summarizeBy: none
+		sourceColumn: Driver Order
+
+		annotation SummarizationSetBy = Automatic
+
+	column Segment
+		dataType: string
+		lineageTag: bd2ba440-8148-4c6b-9474-e365ed2f079d
+		summarizeBy: none
+		sourceColumn: Segment
+		sortByColumn: 'Segment Order'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Segment Order'
+		dataType: int64
+		isHidden
+		lineageTag: 499e9009-9144-49b7-9d08-e4079dec8ba7
+		summarizeBy: none
+		sourceColumn: Segment Order
+
+		annotation SummarizationSetBy = Automatic
+
+	column Factor
+		dataType: string
+		lineageTag: 43ca2faf-6531-4b52-bf0e-5bfcff94938e
+		summarizeBy: none
+		sourceColumn: Factor
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Driver Segments' = m
+		mode: import
+		source =
+				let
+				    Source = #table(
+				        type table [Driver = text, #"Driver Order" = Int64.Type, Segment = text, #"Segment Order" = Int64.Type],
+				        {
+				            {"Overtime", 1, "No", 1},
+				            {"Overtime", 1, "Yes", 2},
+				            {"Job Level", 2, "Level 1", 1},
+				            {"Job Level", 2, "Level 2", 2},
+				            {"Job Level", 2, "Level 3", 3},
+				            {"Job Level", 2, "Level 4", 4},
+				            {"Job Level", 2, "Level 5", 5},
+				            {"Marital Status", 3, "Divorced", 100},
+				            {"Marital Status", 3, "Married", 110},
+				            {"Marital Status", 3, "Single", 119},
+				            {"Age Group", 4, "18-25", 1},
+				            {"Age Group", 4, "26-35", 2},
+				            {"Age Group", 4, "36-45", 3},
+				            {"Age Group", 4, "46-55", 4},
+				            {"Age Group", 4, "55+", 5},
+				            {"Tenure", 5, "<1 yr", 0},
+				            {"Tenure", 5, "1-2 yrs", 1},
+				            {"Tenure", 5, "3-5 yrs", 2},
+				            {"Tenure", 5, "6-10 yrs", 3},
+				            {"Tenure", 5, "10+ yrs", 4},
+				            {"Years in Current Role", 6, "0-1 yrs", 0},
+				            {"Years in Current Role", 6, "2-4 yrs", 1},
+				            {"Years in Current Role", 6, "5+ yrs", 2},
+				            {"Years with Manager", 7, "0-1 yrs", 0},
+				            {"Years with Manager", 7, "2-4 yrs", 1},
+				            {"Years with Manager", 7, "5+ yrs", 2},
+				            {"Years with Manager", 7, "Unknown", 9},
+				            {"Years Since Promotion", 8, "0-1 yrs", 0},
+				            {"Years Since Promotion", 8, "2-4 yrs", 1},
+				            {"Years Since Promotion", 8, "5-7 yrs", 2},
+				            {"Years Since Promotion", 8, "8+ yrs", 3},
+				            {"Salary Slab", 9, "Up to 5k", 1},
+				            {"Salary Slab", 9, "5k-10k", 2},
+				            {"Salary Slab", 9, "10k-15k", 3},
+				            {"Salary Slab", 9, "15k+", 4},
+				            {"Stock Options", 10, "None", 0},
+				            {"Stock Options", 10, "Low", 1},
+				            {"Stock Options", 10, "Medium", 2},
+				            {"Stock Options", 10, "High", 3},
+				            {"Business Travel", 11, "Non-Travel", 1},
+				            {"Business Travel", 11, "Travel Rarely", 2},
+				            {"Business Travel", 11, "Travel Frequently", 3},
+				            {"Distance from Home", 12, "0-5", 1},
+				            {"Distance from Home", 12, "6-10", 2},
+				            {"Distance from Home", 12, "11-20", 3},
+				            {"Distance from Home", 12, "21+", 4},
+				            {"Job Satisfaction", 13, "Low", 1},
+				            {"Job Satisfaction", 13, "Medium", 2},
+				            {"Job Satisfaction", 13, "High", 3},
+				            {"Job Satisfaction", 13, "Very High", 4},
+				            {"Environment Satisfaction", 14, "Low", 1},
+				            {"Environment Satisfaction", 14, "Medium", 2},
+				            {"Environment Satisfaction", 14, "High", 3},
+				            {"Environment Satisfaction", 14, "Very High", 4},
+				            {"Relationship Satisfaction", 15, "Low", 1},
+				            {"Relationship Satisfaction", 15, "Medium", 2},
+				            {"Relationship Satisfaction", 15, "High", 3},
+				            {"Relationship Satisfaction", 15, "Very High", 4},
+				            {"Job Involvement", 16, "Low", 1},
+				            {"Job Involvement", 16, "Medium", 2},
+				            {"Job Involvement", 16, "High", 3},
+				            {"Job Involvement", 16, "Very High", 4},
+				            {"Work-Life Balance", 17, "Bad", 1},
+				            {"Work-Life Balance", 17, "Good", 2},
+				            {"Work-Life Balance", 17, "Better", 3},
+				            {"Work-Life Balance", 17, "Best", 4},
+				            {"Department", 18, "Human Resources", 103},
+				            {"Department", 18, "Research & Development", 113},
+				            {"Department", 18, "Sales", 116},
+				            {"Job Role", 19, "Healthcare Representative", 102},
+				            {"Job Role", 19, "Human Resources", 103},
+				            {"Job Role", 19, "Laboratory Technician", 104},
+				            {"Job Role", 19, "Manager", 107},
+				            {"Job Role", 19, "Manufacturing Director", 108},
+				            {"Job Role", 19, "Research Director", 114},
+				            {"Job Role", 19, "Research Scientist", 115},
+				            {"Job Role", 19, "Sales Executive", 117},
+				            {"Job Role", 19, "Sales Representative", 118},
+				            {"Education Field", 20, "Human Resources", 103},
+				            {"Education Field", 20, "Life Sciences", 105},
+				            {"Education Field", 20, "Marketing", 109},
+				            {"Education Field", 20, "Medical", 111},
+				            {"Education Field", 20, "Other", 112},
+				            {"Education Field", 20, "Technical Degree", 120},
+				            {"Education", 21, "Below College", 1},
+				            {"Education", 21, "College", 2},
+				            {"Education", 21, "Bachelor", 3},
+				            {"Education", 21, "Master", 4},
+				            {"Education", 21, "Doctor", 5},
+				            {"Gender", 22, "Female", 101},
+				            {"Gender", 22, "Male", 106},
+				            {"Prior Companies", 23, "0-1 companies", 1},
+				            {"Prior Companies", 23, "2-4 companies", 2},
+				            {"Prior Companies", 23, "5+ companies", 3}
+				        }),
+				    AddFactor = Table.AddColumn(Source, "Factor", each [Driver] & ": " & [Segment], type text)
+				in
+				    AddFactor
+
+	annotation PBI_ResultType = Table
+

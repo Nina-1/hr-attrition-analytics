@@ -1,0 +1,5 @@
+expression DataFolder = "D:\Power BI Portfolio\HR Analytics" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: ec918c5c-b63e-4208-972a-6d70520078bb
+
+	annotation PBI_ResultType = Text
+

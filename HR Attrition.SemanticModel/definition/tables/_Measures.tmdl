@@ -1,0 +1,764 @@
+table _Measures
+	lineageTag: 7f656591-983c-483d-9bb1-727267104cb4
+
+	measure Headcount = COUNTROWS ( Employees )
+		formatString: #,0
+		displayFolder: Core
+		lineageTag: 089e5861-bd4d-4f01-bf99-9088a593196d
+
+	measure Leavers = CALCULATE ( [Headcount], Employees[Attrition] = "Yes" )
+		formatString: #,0
+		displayFolder: Core
+		lineageTag: 73d8d3cf-5240-40b3-bb97-6f7704597d90
+
+	measure 'Active Employees' = CALCULATE ( [Headcount], Employees[Attrition] = "No" )
+		formatString: #,0
+		displayFolder: Core
+		lineageTag: cfa81a72-8640-4e7a-a58b-bdc53f554e26
+
+	measure 'Attrition Rate' = DIVIDE ( [Leavers], [Headcount] )
+		formatString: 0.0%
+		displayFolder: Core
+		lineageTag: 5be6a230-314e-449b-ad52-da0e8cfb3831
+
+	measure 'Baseline Attrition Rate' =
+			// Attrition across everything currently selected (ignores the visual's own grouping)
+			CALCULATE ( [Attrition Rate], ALLSELECTED ( Employees ) )
+		formatString: 0.0%
+		displayFolder: Core
+		lineageTag: 7920c553-292a-422c-9e9e-8a1ed4fdcc1d
+
+	measure 'Attrition vs Average' = DIVIDE ( [Attrition Rate], [Baseline Attrition Rate] )
+		formatString: 0.00
+		displayFolder: Core
+		lineageTag: 1cefa10d-2e37-4c2d-be1e-6392fc3e0f0c
+
+	measure 'Avg Age' = AVERAGE ( Employees[Age] )
+		formatString: 0.0
+		displayFolder: Profile
+		lineageTag: c9b92bcb-4880-425a-892b-8c812b9594a2
+
+	measure 'Avg Monthly Income' = AVERAGE ( Employees[Monthly Income] )
+		formatString: #,0
+		displayFolder: Profile
+		lineageTag: 04a242f5-65b1-4237-857e-bf3d4603caf7
+
+	measure 'Avg Tenure (yrs)' = AVERAGE ( Employees[Years at Company] )
+		formatString: 0.0
+		displayFolder: Profile
+		lineageTag: 5f42c925-407a-4fd7-b7b5-f012ed771710
+
+	measure 'Avg Years in Role' = AVERAGE ( Employees[Years in Current Role] )
+		formatString: 0.0
+		displayFolder: Profile
+		lineageTag: 8bd2bbcc-e284-43d3-8fce-0f58f54f33ab
+
+	measure 'Avg Yrs Since Promotion' = AVERAGE ( Employees[Years Since Promotion] )
+		formatString: 0.0
+		displayFolder: Profile
+		lineageTag: dabca87e-13d3-449e-9654-1f6d55cad574
+
+	measure 'Avg Distance From Home' = AVERAGE ( Employees[Distance From Home] )
+		formatString: 0.0
+		displayFolder: Profile
+		lineageTag: dd3ac391-4b1f-4508-8327-0b20ce4aa739
+
+	measure 'Avg Job Satisfaction' = AVERAGE ( Employees[Job Satisfaction] )
+		formatString: 0.00
+		displayFolder: Profile
+		lineageTag: f5c0cbc1-c3f1-41ec-a623-2ed052e21741
+
+	measure 'Avg Work-Life Balance' = AVERAGE ( Employees[Work-Life Balance] )
+		formatString: 0.00
+		displayFolder: Profile
+		lineageTag: 22b4d625-3c54-4314-bd4f-5775275e5149
+
+	measure '% on Overtime' = DIVIDE ( CALCULATE ( [Headcount], Employees[Overtime] = "Yes" ), [Headcount] )
+		formatString: 0.0%
+		displayFolder: Profile
+		lineageTag: 873fc2a3-48ec-442b-b4cc-b6d4aa11438d
+
+	measure '% Without Stock Options' = DIVIDE ( CALCULATE ( [Headcount], Employees[Stock Option Level] = 0 ), [Headcount] )
+		formatString: 0.0%
+		displayFolder: Profile
+		lineageTag: b1218d22-bc55-42d0-a8f9-a7d8c4506244
+
+	measure 'Avg Income (Leavers)' = CALCULATE ( [Avg Monthly Income], Employees[Attrition] = "Yes" )
+		formatString: #,0
+		displayFolder: Comparisons
+		lineageTag: c89c85f2-49a7-4857-b3b4-48d8fa052408
+
+	measure 'Avg Income (Stayers)' = CALCULATE ( [Avg Monthly Income], Employees[Attrition] = "No" )
+		formatString: #,0
+		displayFolder: Comparisons
+		lineageTag: 01af3edd-9782-4f6d-a177-2434a31e4156
+
+	measure 'Income Gap %' = DIVIDE ( [Avg Income (Stayers)] - [Avg Income (Leavers)], [Avg Income (Stayers)] )
+		formatString: 0.0%
+		displayFolder: Comparisons
+		lineageTag: 899ee039-d211-4d02-8e6f-26a6a04c8ca9
+
+	measure 'Avg Tenure (Leavers)' = CALCULATE ( [Avg Tenure (yrs)], Employees[Attrition] = "Yes" )
+		formatString: 0.0
+		displayFolder: Comparisons
+		lineageTag: fcc958fe-ce81-48b9-bfa2-c1cc7155afa2
+
+	measure 'Avg Tenure (Stayers)' = CALCULATE ( [Avg Tenure (yrs)], Employees[Attrition] = "No" )
+		formatString: 0.0
+		displayFolder: Comparisons
+		lineageTag: c67848c4-6471-4080-a1b0-12ddb29885fe
+
+	measure 'Attrition Rate (Overtime)' = CALCULATE ( [Attrition Rate], Employees[Overtime] = "Yes" )
+		formatString: 0.0%
+		displayFolder: Comparisons
+		lineageTag: e04ffaa4-858c-4611-beef-4d7676f15cb8
+
+	measure 'Attrition Rate (No Overtime)' = CALCULATE ( [Attrition Rate], Employees[Overtime] = "No" )
+		formatString: 0.0%
+		displayFolder: Comparisons
+		lineageTag: 0b3514a1-bac1-4171-b279-172b80e906d7
+
+	measure 'Overtime Multiplier' = DIVIDE ( [Attrition Rate (Overtime)], [Attrition Rate (No Overtime)] )
+		formatString: 0.0
+		displayFolder: Comparisons
+		lineageTag: a884744e-3be4-4ae8-bd92-ad6881356094
+
+	measure 'Leavers in First 2 Years' = CALCULATE ( [Leavers], Employees[Years at Company] <= 2 )
+		formatString: #,0
+		displayFolder: Comparisons
+		lineageTag: 98ab37b3-73f7-4812-8f07-202d523eba10
+
+	measure '% of Leavers in First 2 Years' = DIVIDE ( [Leavers in First 2 Years], [Leavers] )
+		formatString: 0.0%
+		displayFolder: Comparisons
+		lineageTag: cd5a7a06-b7a8-4649-b2fa-516e1febdb5c
+
+	measure 'Attrition Rate (First 2 Years)' = CALCULATE ( [Attrition Rate], Employees[Years at Company] <= 2 )
+		formatString: 0.0%
+		displayFolder: Comparisons
+		lineageTag: a492e084-1ab9-4402-a33e-c048137da447
+
+	measure 'Attrition Rate (10+ Years)' = CALCULATE ( [Attrition Rate], Employees[Years at Company] > 10 )
+		formatString: 0.0%
+		displayFolder: Comparisons
+		lineageTag: e8ece57e-2972-412a-bf66-3c14137bf67e
+
+	measure 'Attrition Rate (No Stock)' = CALCULATE ( [Attrition Rate], Employees[Stock Option Level] = 0 )
+		formatString: 0.0%
+		displayFolder: Comparisons
+		lineageTag: b56ff798-dc2e-447c-b3d3-d231c61519c5
+
+	measure 'Attrition Rate (With Stock)' = CALCULATE ( [Attrition Rate], Employees[Stock Option Level] > 0 )
+		formatString: 0.0%
+		displayFolder: Comparisons
+		lineageTag: 1d5a71eb-acf7-4097-b94c-9b8a8e3e5c27
+
+	measure 'Attrition Rate (Single)' = CALCULATE ( [Attrition Rate], Employees[Marital Status] = "Single" )
+		formatString: 0.0%
+		displayFolder: Comparisons
+		lineageTag: f49d2ff4-1f28-47e6-a789-bbad28849adb
+
+	measure 'Attrition Rate (Not Single)' = CALCULATE ( [Attrition Rate], Employees[Marital Status] <> "Single" )
+		formatString: 0.0%
+		displayFolder: Comparisons
+		lineageTag: ef6fe5dc-13cc-473e-84a7-769889aca0d2
+
+	measure 'Attrition Rate (Level 1)' = CALCULATE ( [Attrition Rate], Employees[Job Level] = 1 )
+		formatString: 0.0%
+		displayFolder: Comparisons
+		lineageTag: 39af0eb0-9fb1-4d59-a2d1-06c10d0dfb09
+
+	measure 'Attrition Rate (Level 2+)' = CALCULATE ( [Attrition Rate], Employees[Job Level] > 1 )
+		formatString: 0.0%
+		displayFolder: Comparisons
+		lineageTag: a97888ca-e418-435f-8d8a-67b1dc696ef1
+
+	measure 'Avg Risk Score' = AVERAGE ( Employees[Risk Score] )
+		formatString: 0.0
+		displayFolder: Risk
+		lineageTag: f4953cf1-e998-4881-bc60-de3a66c5afb6
+
+	measure 'High-Risk Active Employees' = CALCULATE ( [Active Employees], Employees[Risk Score] >= 4 )
+		formatString: #,0
+		displayFolder: Risk
+		lineageTag: ca697ede-c5ae-45f2-8d39-fcc28d725ac0
+
+	measure '% of Active at High Risk' = DIVIDE ( [High-Risk Active Employees], [Active Employees] )
+		formatString: 0.0%
+		displayFolder: Risk
+		lineageTag: bb4769e0-a659-42f2-bc8f-86bd29deec35
+
+	measure 'Attrition Rate at Risk Score 4+' = CALCULATE ( [Attrition Rate], Employees[Risk Score] >= 4 )
+		formatString: 0.0%
+		displayFolder: Risk
+		lineageTag: 1f6abebf-5397-41e0-80f2-9dd134e6afb5
+
+	measure 'At-Risk Score' =
+			// Only active employees scoring 4+; blank otherwise so the action list hides everyone else
+			CALCULATE (
+			    MAX ( Employees[Risk Score] ),
+			    KEEPFILTERS ( Employees[Attrition] = "No" ),
+			    KEEPFILTERS ( Employees[Risk Score] >= 4 )
+			)
+		formatString: 0
+		displayFolder: Risk
+		lineageTag: b06de120-2156-4a8b-9f86-1a2e32b91dd3
+
+	measure 'Segment Headcount' =
+			VAR _driver = SELECTEDVALUE ( 'Driver Segments'[Driver] )
+			VAR _segments = VALUES ( 'Driver Segments'[Segment] )
+			RETURN
+			    SWITCH (
+			        _driver,
+			        "Overtime", CALCULATE ( [Headcount], KEEPFILTERS ( TREATAS ( _segments, Employees[Overtime] ) ) ),
+			        "Job Level", CALCULATE ( [Headcount], KEEPFILTERS ( TREATAS ( _segments, Employees[Job Level Label] ) ) ),
+			        "Marital Status", CALCULATE ( [Headcount], KEEPFILTERS ( TREATAS ( _segments, Employees[Marital Status] ) ) ),
+			        "Age Group", CALCULATE ( [Headcount], KEEPFILTERS ( TREATAS ( _segments, Employees[Age Group] ) ) ),
+			        "Tenure", CALCULATE ( [Headcount], KEEPFILTERS ( TREATAS ( _segments, Employees[Tenure Band] ) ) ),
+			        "Years in Current Role", CALCULATE ( [Headcount], KEEPFILTERS ( TREATAS ( _segments, Employees[Years in Role Band] ) ) ),
+			        "Years with Manager", CALCULATE ( [Headcount], KEEPFILTERS ( TREATAS ( _segments, Employees[Manager Tenure Band] ) ) ),
+			        "Years Since Promotion", CALCULATE ( [Headcount], KEEPFILTERS ( TREATAS ( _segments, Employees[Promotion Gap Band] ) ) ),
+			        "Salary Slab", CALCULATE ( [Headcount], KEEPFILTERS ( TREATAS ( _segments, Employees[Salary Slab] ) ) ),
+			        "Stock Options", CALCULATE ( [Headcount], KEEPFILTERS ( TREATAS ( _segments, Employees[Stock Options] ) ) ),
+			        "Business Travel", CALCULATE ( [Headcount], KEEPFILTERS ( TREATAS ( _segments, Employees[Business Travel] ) ) ),
+			        "Distance from Home", CALCULATE ( [Headcount], KEEPFILTERS ( TREATAS ( _segments, Employees[Distance Band] ) ) ),
+			        "Job Satisfaction", CALCULATE ( [Headcount], KEEPFILTERS ( TREATAS ( _segments, Employees[Job Satisfaction Level] ) ) ),
+			        "Environment Satisfaction", CALCULATE ( [Headcount], KEEPFILTERS ( TREATAS ( _segments, Employees[Environment Satisfaction Level] ) ) ),
+			        "Relationship Satisfaction", CALCULATE ( [Headcount], KEEPFILTERS ( TREATAS ( _segments, Employees[Relationship Satisfaction Level] ) ) ),
+			        "Job Involvement", CALCULATE ( [Headcount], KEEPFILTERS ( TREATAS ( _segments, Employees[Job Involvement Level] ) ) ),
+			        "Work-Life Balance", CALCULATE ( [Headcount], KEEPFILTERS ( TREATAS ( _segments, Employees[Work-Life Balance Level] ) ) ),
+			        "Department", CALCULATE ( [Headcount], KEEPFILTERS ( TREATAS ( _segments, Employees[Department] ) ) ),
+			        "Job Role", CALCULATE ( [Headcount], KEEPFILTERS ( TREATAS ( _segments, Employees[Job Role] ) ) ),
+			        "Education Field", CALCULATE ( [Headcount], KEEPFILTERS ( TREATAS ( _segments, Employees[Education Field] ) ) ),
+			        "Education", CALCULATE ( [Headcount], KEEPFILTERS ( TREATAS ( _segments, Employees[Education Level] ) ) ),
+			        "Gender", CALCULATE ( [Headcount], KEEPFILTERS ( TREATAS ( _segments, Employees[Gender] ) ) ),
+			        "Prior Companies", CALCULATE ( [Headcount], KEEPFILTERS ( TREATAS ( _segments, Employees[Prior Companies Band] ) ) )
+			    )
+		formatString: #,0
+		displayFolder: Drivers
+		lineageTag: fe9bbbaf-19eb-4a4e-9798-ca79afec4133
+
+	measure 'Segment Leavers' =
+			VAR _driver = SELECTEDVALUE ( 'Driver Segments'[Driver] )
+			VAR _segments = VALUES ( 'Driver Segments'[Segment] )
+			RETURN
+			    SWITCH (
+			        _driver,
+			        "Overtime", CALCULATE ( [Leavers], KEEPFILTERS ( TREATAS ( _segments, Employees[Overtime] ) ) ),
+			        "Job Level", CALCULATE ( [Leavers], KEEPFILTERS ( TREATAS ( _segments, Employees[Job Level Label] ) ) ),
+			        "Marital Status", CALCULATE ( [Leavers], KEEPFILTERS ( TREATAS ( _segments, Employees[Marital Status] ) ) ),
+			        "Age Group", CALCULATE ( [Leavers], KEEPFILTERS ( TREATAS ( _segments, Employees[Age Group] ) ) ),
+			        "Tenure", CALCULATE ( [Leavers], KEEPFILTERS ( TREATAS ( _segments, Employees[Tenure Band] ) ) ),
+			        "Years in Current Role", CALCULATE ( [Leavers], KEEPFILTERS ( TREATAS ( _segments, Employees[Years in Role Band] ) ) ),
+			        "Years with Manager", CALCULATE ( [Leavers], KEEPFILTERS ( TREATAS ( _segments, Employees[Manager Tenure Band] ) ) ),
+			        "Years Since Promotion", CALCULATE ( [Leavers], KEEPFILTERS ( TREATAS ( _segments, Employees[Promotion Gap Band] ) ) ),
+			        "Salary Slab", CALCULATE ( [Leavers], KEEPFILTERS ( TREATAS ( _segments, Employees[Salary Slab] ) ) ),
+			        "Stock Options", CALCULATE ( [Leavers], KEEPFILTERS ( TREATAS ( _segments, Employees[Stock Options] ) ) ),
+			        "Business Travel", CALCULATE ( [Leavers], KEEPFILTERS ( TREATAS ( _segments, Employees[Business Travel] ) ) ),
+			        "Distance from Home", CALCULATE ( [Leavers], KEEPFILTERS ( TREATAS ( _segments, Employees[Distance Band] ) ) ),
+			        "Job Satisfaction", CALCULATE ( [Leavers], KEEPFILTERS ( TREATAS ( _segments, Employees[Job Satisfaction Level] ) ) ),
+			        "Environment Satisfaction", CALCULATE ( [Leavers], KEEPFILTERS ( TREATAS ( _segments, Employees[Environment Satisfaction Level] ) ) ),
+			        "Relationship Satisfaction", CALCULATE ( [Leavers], KEEPFILTERS ( TREATAS ( _segments, Employees[Relationship Satisfaction Level] ) ) ),
+			        "Job Involvement", CALCULATE ( [Leavers], KEEPFILTERS ( TREATAS ( _segments, Employees[Job Involvement Level] ) ) ),
+			        "Work-Life Balance", CALCULATE ( [Leavers], KEEPFILTERS ( TREATAS ( _segments, Employees[Work-Life Balance Level] ) ) ),
+			        "Department", CALCULATE ( [Leavers], KEEPFILTERS ( TREATAS ( _segments, Employees[Department] ) ) ),
+			        "Job Role", CALCULATE ( [Leavers], KEEPFILTERS ( TREATAS ( _segments, Employees[Job Role] ) ) ),
+			        "Education Field", CALCULATE ( [Leavers], KEEPFILTERS ( TREATAS ( _segments, Employees[Education Field] ) ) ),
+			        "Education", CALCULATE ( [Leavers], KEEPFILTERS ( TREATAS ( _segments, Employees[Education Level] ) ) ),
+			        "Gender", CALCULATE ( [Leavers], KEEPFILTERS ( TREATAS ( _segments, Employees[Gender] ) ) ),
+			        "Prior Companies", CALCULATE ( [Leavers], KEEPFILTERS ( TREATAS ( _segments, Employees[Prior Companies Band] ) ) )
+			    )
+		formatString: #,0
+		displayFolder: Drivers
+		lineageTag: 353fad62-6ad2-4d7e-97f3-39dd2778ed28
+
+	measure 'Segment Attrition %' = DIVIDE ( [Segment Leavers], [Segment Headcount] )
+		formatString: 0.0%
+		displayFolder: Drivers
+		lineageTag: a88a3128-845b-4805-91d1-0ec94a0d637b
+
+	measure 'Factor Headcount' =
+			// Segments under 30 people are too small to act on
+			IF ( [Segment Headcount] >= 30, [Segment Headcount] )
+		formatString: #,0
+		displayFolder: Drivers
+		lineageTag: 4c854d10-323f-41ca-b1fc-e6649fe51d86
+
+	measure 'Factor Attrition %' = IF ( [Segment Headcount] >= 30, [Segment Attrition %] )
+		formatString: 0.0%
+		displayFolder: Drivers
+		lineageTag: 7029297e-3fb3-404e-8246-bd737e451cfe
+
+	measure 'Factor Lift' = IF ( [Segment Headcount] >= 30, DIVIDE ( [Segment Attrition %], [Attrition Rate] ) )
+		formatString: 0.00
+		displayFolder: Drivers
+		lineageTag: 704c743c-79a3-4fea-b5f4-780d6c86f2b8
+
+	measure 'Excess Leavers' =
+			// Leavers above what the overall attrition rate would predict for this segment
+			IF ( [Segment Headcount] >= 30, [Segment Leavers] - [Segment Headcount] * [Attrition Rate] )
+		formatString: 0
+		displayFolder: Drivers
+		lineageTag: 4316cd0f-d232-4dfe-974a-d4c0a12bd8cc
+
+	measure 'Top Factor Lift' =
+			VAR _rank = RANKX ( ALL ( 'Driver Segments' ), [Factor Lift], , DESC )
+			RETURN
+			    IF ( NOT ISBLANK ( [Factor Lift] ) && _rank <= 8, [Factor Lift] )
+		formatString: 0.00
+		displayFolder: Drivers
+		lineageTag: 55bb843e-bace-4771-8805-c3412f33dde0
+
+	measure 'Attrition Color' =
+			VAR _rate = [Attrition Rate]
+			VAR _base = [Baseline Attrition Rate]
+			RETURN
+			    SWITCH (
+			        TRUE (),
+			        ISBLANK ( _rate ), BLANK (),
+			        _rate >= _base * 1.25, "#c8661e",
+			        _rate > _base, "#e8b48a",
+			        "#407198"
+			    )
+		displayFolder: Formatting
+		lineageTag: 786486d6-c948-4725-8f10-cf1f4c90cfbc
+
+	measure 'Segment Color' =
+			VAR _rate = [Segment Attrition %]
+			VAR _base = [Attrition Rate]
+			RETURN
+			    SWITCH (
+			        TRUE (),
+			        ISBLANK ( _rate ), BLANK (),
+			        _rate >= _base * 1.25, "#c8661e",
+			        _rate > _base, "#e8b48a",
+			        "#407198"
+			    )
+		displayFolder: Formatting
+		lineageTag: a12c3bde-60d3-4a3c-9cbf-f69b79f7f48f
+
+	measure 'Heat Color' =
+			VAR _rate = [Attrition Rate]
+			RETURN
+			    SWITCH (
+			        TRUE (),
+			        ISBLANK ( _rate ), BLANK (),
+			        _rate >= 0.40, "#a24d10",
+			        _rate >= 0.25, "#c8661e",
+			        _rate >= 0.15, "#e8b48a",
+			        _rate >= 0.08, "#b7d4ec",
+			        "#8fbfe0"
+			    )
+		displayFolder: Formatting
+		lineageTag: ae2a9ea5-c0de-4e41-bbcd-a5df9d06db2e
+
+	measure 'Heat Font Color' = IF ( [Attrition Rate] >= 0.25, "#ffffff", "#0b2841" )
+		displayFolder: Formatting
+		lineageTag: b7104f8b-304d-41d8-b65d-f425d1425bf2
+
+	measure 'Factor Heat Color' =
+			VAR _lift = [Factor Lift]
+			RETURN
+			    SWITCH (
+			        TRUE (),
+			        ISBLANK ( _lift ), BLANK (),
+			        _lift >= 2, "#c8661e",
+			        _lift >= 1.5, "#e8b48a",
+			        _lift >= 1.1, "#f6dcc6",
+			        BLANK ()
+			    )
+		displayFolder: Formatting
+		lineageTag: f583802f-4a6e-498b-a1b0-161fc30e3184
+
+	measure 'Factor Font Color' = IF ( [Factor Lift] >= 2, "#ffffff", "#0b2841" )
+		displayFolder: Formatting
+		lineageTag: fc0b5caa-9ed4-442a-af48-2ae46dfa27f4
+
+	measure 'Risk Score Color' =
+			VAR _s = [At-Risk Score]
+			RETURN
+			    SWITCH ( TRUE (), ISBLANK ( _s ), BLANK (), _s >= 6, "#a24d10", _s = 5, "#c8661e", "#e8b48a" )
+		displayFolder: Formatting
+		lineageTag: dd54a4e2-716a-4e61-a8dd-445a1ce3d73f
+
+	measure 'Risk Font Color' = IF ( [At-Risk Score] >= 5, "#ffffff", "#0b2841" )
+		displayFolder: Formatting
+		lineageTag: e3b8c9f6-5f8c-4476-815e-d21ce068195e
+
+	measure 'Insight Overview' =
+			VAR _rate = [Attrition Rate]
+			VAR _dept = MAXX ( TOPN ( 1, VALUES ( Employees[Department] ), [Attrition Rate], DESC ), Employees[Department] )
+			VAR _deptRate = CALCULATE ( [Attrition Rate], Employees[Department] = _dept )
+			VAR _age = MAXX ( TOPN ( 1, VALUES ( Employees[Age Group] ), [Attrition Rate], DESC ), Employees[Age Group] )
+			VAR _ageRate = CALCULATE ( [Attrition Rate], Employees[Age Group] = _age )
+			RETURN
+			    FORMAT ( _rate, "0.0%" ) & " of employees have left (" & FORMAT ( [Leavers], "#,0" ) & " of " & FORMAT ( [Headcount], "#,0" )
+			        & "), roughly 1 in " & FORMAT ( DIVIDE ( 1, _rate ), "0" ) & ". Attrition is highest in " & _dept & " (" & FORMAT ( _deptRate, "0.0%" )
+			        & ") and among " & _age & " year-olds (" & FORMAT ( _ageRate, "0.0%" ) & "). The pages that follow show who leaves, when, why, and where to act."
+		displayFolder: Narrative
+		lineageTag: 65f575dd-d5bd-45c1-a832-062e5fd7bcd3
+
+	measure 'Insight Role' =
+			VAR _role = MAXX ( TOPN ( 1, VALUES ( Employees[Job Role] ), [Attrition Rate], DESC ), Employees[Job Role] )
+			RETURN
+			    _role & ": " & FORMAT ( CALCULATE ( [Attrition Rate], Employees[Job Role] = _role ), "0.0%" ) & " attrition (highest role)"
+		displayFolder: Narrative
+		lineageTag: 698516bf-99e1-48d1-bb6f-444831a03f4c
+
+	measure 'Insight Marital' = "Singles leave at " & FORMAT ( [Attrition Rate (Single)], "0.0%" ) & " vs " & FORMAT ( [Attrition Rate (Not Single)], "0.0%" ) & " for others"
+		displayFolder: Narrative
+		lineageTag: 9749fa6e-09ed-45d7-808c-5dd8a7bd5cf3
+
+	measure 'Insight Level' = "Level 1 attrition: " & FORMAT ( [Attrition Rate (Level 1)], "0.0%" ) & " vs " & FORMAT ( [Attrition Rate (Level 2+)], "0.0%" ) & " at Level 2+"
+		displayFolder: Narrative
+		lineageTag: 36cf79c8-4af6-481e-9fbd-ae6b914349bc
+
+	measure 'Insight Early Tenure' = FORMAT ( [% of Leavers in First 2 Years], "0%" ) & " of leavers quit within their first 2 years"
+		displayFolder: Narrative
+		lineageTag: a3cc1421-4e83-425a-92f1-2ee582a4ae68
+
+	measure 'Insight Tenure Curve' = "Attrition " & FORMAT ( [Attrition Rate (First 2 Years)], "0.0%" ) & " in years 0-2 vs " & FORMAT ( [Attrition Rate (10+ Years)], "0.0%" ) & " after 10"
+		displayFolder: Narrative
+		lineageTag: 8efccd12-f76e-41e3-94ad-e80dfa2c4b08
+
+	measure 'Insight Tenure Gap' = "Leavers stayed " & FORMAT ( [Avg Tenure (Leavers)], "0.0" ) & " yrs on avg vs " & FORMAT ( [Avg Tenure (Stayers)], "0.0" ) & " for stayers"
+		displayFolder: Narrative
+		lineageTag: 5c09b6a2-d3a6-48b1-abb2-87ff1f0dd4e2
+
+	measure 'Insight Overtime' = "Overtime: " & FORMAT ( [Attrition Rate (Overtime)], "0.0%" ) & " attrition vs " & FORMAT ( [Attrition Rate (No Overtime)], "0.0%" ) & " (" & FORMAT ( [Overtime Multiplier], "0.0" ) & "×)"
+		displayFolder: Narrative
+		lineageTag: d446218a-e72f-4b4f-9258-a0e5dc072cc1
+
+	measure 'Insight Pay' = "Leavers earned " & FORMAT ( [Income Gap %], "0%" ) & " less (" & FORMAT ( [Avg Income (Leavers)], "#,0" ) & " vs " & FORMAT ( [Avg Income (Stayers)], "#,0" ) & ")"
+		displayFolder: Narrative
+		lineageTag: 9981637b-d416-4bc5-88ad-d6f1770fae04
+
+	measure 'Insight Stock' = "No stock options: " & FORMAT ( [Attrition Rate (No Stock)], "0.0%" ) & " vs " & FORMAT ( [Attrition Rate (With Stock)], "0.0%" ) & " with options"
+		displayFolder: Narrative
+		lineageTag: a11eaf51-2571-4b89-b933-293242724489
+
+	measure 'Insight Risk' = FORMAT ( [High-Risk Active Employees], "#,0" ) & " current employees score 4+ on the risk index. Historically, " & FORMAT ( [Attrition Rate at Risk Score 4+], "0%" ) & " of people with that profile left. Start retention conversations with the list below."
+		displayFolder: Narrative
+		lineageTag: 8249c2a8-cbc5-4176-943a-3cfd4601e3b5
+
+	measure 'Subtitle Department' =
+			VAR _t = ADDCOLUMNS ( VALUES ( Employees[Department] ), "@r", [Attrition Rate] )
+			VAR _hi = TOPN ( 1, _t, [@r], DESC )
+			VAR _lo = TOPN ( 1, _t, [@r], ASC )
+			VAR _hiR = MAXX ( _hi, [@r] )
+			VAR _loR = MAXX ( _lo, [@r] )
+			RETURN
+			    IF (
+			        _hiR > 0,
+			        MAXX ( _hi, Employees[Department] ) & " loses 1 in " & FORMAT ( DIVIDE ( 1, _hiR ), "0" ) & " people"
+			            & IF ( COUNTROWS ( _t ) > 1 && _loR > 0, ", " & FORMAT ( DIVIDE ( _hiR, _loR ), "0.0" ) & " times the rate of " & MAXX ( _lo, Employees[Department] ) )
+			    )
+		displayFolder: Subtitles
+		lineageTag: 6d6d47fd-dcfe-4634-bda0-366d0781d6f5
+
+	measure 'Subtitle Leavers by Department' =
+			VAR _t = ADDCOLUMNS ( VALUES ( Employees[Department] ), "@l", [Leavers], "@r", [Attrition Rate] )
+			VAR _top = TOPN ( 1, _t, [@l], DESC )
+			RETURN
+			    IF (
+			        [Leavers] > 0,
+			        IF (
+			            COUNTROWS ( _t ) > 1,
+			            MAXX ( _top, Employees[Department] ) & " has " & FORMAT ( DIVIDE ( MAXX ( _top, [@l] ), [Leavers] ), "0%" ) & " of leavers"
+			                & IF ( MAXX ( _top, [@r] ) = MINX ( _t, [@r] ), " despite the lowest rate: a size effect" ),
+			            FORMAT ( [Leavers], "#,0" ) & " of " & FORMAT ( [Headcount], "#,0" ) & " people have left " & MAXX ( _t, Employees[Department] )
+			        )
+			    )
+		displayFolder: Subtitles
+		lineageTag: c072ca2c-53ae-4104-aa97-d463bb9ac95c
+
+	measure 'Subtitle Gender' =
+			VAR _m = CALCULATE ( [Attrition Rate], KEEPFILTERS ( Employees[Gender] = "Male" ) )
+			VAR _f = CALCULATE ( [Attrition Rate], KEEPFILTERS ( Employees[Gender] = "Female" ) )
+			VAR _gap = ABS ( _m - _f ) * 100
+			RETURN
+			    IF (
+			        NOT ISBLANK ( _m ) && NOT ISBLANK ( _f ),
+			        "Men leave at " & FORMAT ( _m, "0.0%" ) & " and women at " & FORMAT ( _f, "0.0%" ) & ", a " & FORMAT ( _gap, "0.0" ) & "-point gap"
+			            & IF ( _gap < 3, " too small to drive policy on its own", " worth a closer look" ),
+			        IF ( NOT ISBLANK ( [Attrition Rate] ), FORMAT ( [Attrition Rate], "0.0%" ) & " of " & LOWER ( SELECTEDVALUE ( Employees[Gender] ) ) & " employees in this selection have left" )
+			    )
+		displayFolder: Subtitles
+		lineageTag: e70414f7-e5c3-4a44-be2f-b7d011e668e7
+
+	measure 'Subtitle Leavers vs Stayers' =
+			VAR _age = CALCULATE ( [Avg Age], Employees[Attrition] = "No" ) - CALCULATE ( [Avg Age], Employees[Attrition] = "Yes" )
+			VAR _ot = DIVIDE ( CALCULATE ( [% on Overtime], Employees[Attrition] = "Yes" ), CALCULATE ( [% on Overtime], Employees[Attrition] = "No" ) )
+			RETURN
+			    IF (
+			        [Leavers] > 0 && [Active Employees] > 0,
+			        "Leavers are " & FORMAT ( ABS ( _age ), "0.0" ) & IF ( _age >= 0, " years younger", " years older" )
+			            & ", earn " & FORMAT ( [Income Gap %], "0%" ) & " less and are " & FORMAT ( _ot, "0.0" ) & " times as likely to work overtime"
+			    )
+		displayFolder: Subtitles
+		lineageTag: 167343a1-3b3b-481d-9250-703a7ce9e8b5
+
+	measure 'Subtitle Top Factors' =
+			VAR _t = FILTER ( ADDCOLUMNS ( ALL ( 'Driver Segments' ), "@lift", [Factor Lift] ), NOT ISBLANK ( [@lift] ) )
+			VAR _twice = COUNTROWS ( FILTER ( _t, [@lift] >= 2 ) ) + 0
+			VAR _top = TOPN ( 1, _t, [@lift], DESC )
+			RETURN
+			    IF (
+			        COUNTROWS ( _t ) > 0,
+			        FORMAT ( _twice, "0" ) & IF ( _twice = 1, " segment leaves", " segments leave" ) & " at 2+ times the average, led by "
+			            & MAXX ( _top, 'Driver Segments'[Segment] ) & " (" & MAXX ( _top, 'Driver Segments'[Driver] ) & ")"
+			    )
+		displayFolder: Subtitles
+		lineageTag: dcefc401-f795-494f-a360-08674c877a8e
+
+	measure 'Subtitle Job Role' =
+			VAR _base = [Attrition Rate]
+			VAR _t = ADDCOLUMNS ( VALUES ( Employees[Job Role] ), "@r", [Attrition Rate] )
+			VAR _above = COUNTROWS ( FILTER ( _t, [@r] > _base ) ) + 0
+			VAR _lo = TOPN ( 1, _t, [@r], ASC )
+			RETURN
+			    IF (
+			        COUNTROWS ( _t ) > 1,
+			        FORMAT ( _above, "0" ) & " of " & COUNTROWS ( _t ) & IF ( _above = 1, " roles runs", " roles run" ) & " above the " & FORMAT ( _base, "0.0%" ) & " average, while "
+			            & MAXX ( _lo, Employees[Job Role] ) & IF ( MAXX ( _lo, [@r] ) > 0, " loses just " & FORMAT ( MAXX ( _lo, [@r] ), "0.0%" ), " has no leavers" )
+			    )
+		displayFolder: Subtitles
+		lineageTag: a69b4cd9-c443-4684-b525-e00dd87a86be
+
+	measure 'Subtitle Age Group' =
+			VAR _t = ADDCOLUMNS ( VALUES ( Employees[Age Group] ), "@r", [Attrition Rate] )
+			VAR _hi = TOPN ( 1, _t, [@r], DESC )
+			VAR _lo = TOPN ( 1, _t, [@r], ASC )
+			VAR _hiR = MAXX ( _hi, [@r] )
+			VAR _loR = MAXX ( _lo, [@r] )
+			RETURN
+			    IF (
+			        COUNTROWS ( _t ) > 1 && _hiR > 0,
+			        MAXX ( _hi, Employees[Age Group] ) & " year-olds leave at " & FORMAT ( _hiR, "0.0%" )
+			            & IF (
+			                _loR > 0,
+			                ", " & FORMAT ( DIVIDE ( _hiR, _loR ), "0.0" ) & " times the rate of " & MAXX ( _lo, Employees[Age Group] ) & " year-olds",
+			                ", while no " & MAXX ( _lo, Employees[Age Group] ) & " year-olds have left"
+			            )
+			    )
+		displayFolder: Subtitles
+		lineageTag: 1feb5155-acd0-46d0-a47d-6abe48ba7c7e
+
+	measure 'Subtitle Marital Status' =
+			VAR _staff = DIVIDE ( CALCULATE ( [Headcount], Employees[Marital Status] = "Single" ), [Headcount] )
+			VAR _left = DIVIDE ( CALCULATE ( [Leavers], Employees[Marital Status] = "Single" ), [Leavers] )
+			RETURN
+			    IF ( [Leavers] > 0, "Single employees are " & FORMAT ( _staff, "0%" ) & " of the workforce but " & FORMAT ( _left, "0%" ) & " of leavers" )
+		displayFolder: Subtitles
+		lineageTag: b8206536-a2c2-4c39-8444-704931a102a7
+
+	measure 'Subtitle Job Level' =
+			VAR _staff = DIVIDE ( CALCULATE ( [Headcount], Employees[Job Level] = 1 ), [Headcount] )
+			VAR _left = DIVIDE ( CALCULATE ( [Leavers], Employees[Job Level] = 1 ), [Leavers] )
+			RETURN
+			    IF ( [Leavers] > 0, "Level 1 is " & FORMAT ( _staff, "0%" ) & " of the workforce but " & FORMAT ( _left, "0%" ) & " of leavers" )
+		displayFolder: Subtitles
+		lineageTag: 39574613-a219-46d9-888d-bb221747a1c8
+
+	measure 'Subtitle Tenure Year' =
+			VAR _t = ADDCOLUMNS ( VALUES ( Employees[Tenure Year] ), "@l", [Leavers] )
+			RETURN
+			    IF ( [Leavers] > 0, "Year " & MAXX ( TOPN ( 1, _t, [@l], DESC ), Employees[Tenure Year] ) & " is the biggest exit point" )
+		displayFolder: Subtitles
+		lineageTag: c1c4651e-29fe-41f8-9d05-e5191906b2c8
+
+	measure 'Subtitle Tenure Band' =
+			VAR _early = [Attrition Rate (First 2 Years)]
+			VAR _next = CALCULATE ( [Attrition Rate], Employees[Years at Company] >= 3 && Employees[Years at Company] <= 5 )
+			RETURN
+			    IF (
+			        NOT ISBLANK ( _early ) && NOT ISBLANK ( _next ),
+			        "Attrition falls from " & FORMAT ( _early, "0.0%" ) & " in years 0-2 to " & FORMAT ( _next, "0.0%" ) & " in years 3-5"
+			            & IF ( _next <= _early / 2, ", halving once people pass year two" )
+			    )
+		displayFolder: Subtitles
+		lineageTag: 6bb4225e-1337-41db-b6a4-c2916bb86880
+
+	measure 'Subtitle Years in Role' =
+			VAR _new = CALCULATE ( [Attrition Rate], Employees[Years in Role Band] = "0-1 yrs" )
+			VAR _settled = CALCULATE ( [Attrition Rate], Employees[Years in Role Band] = "5+ yrs" )
+			RETURN
+			    IF (
+			        _settled > 0 && NOT ISBLANK ( _new ),
+			        "Under two years in a role: " & FORMAT ( _new, "0.0%" ) & " attrition, " & FORMAT ( DIVIDE ( _new, _settled ), "0.0" ) & " times the rate of people 5+ years in"
+			    )
+		displayFolder: Subtitles
+		lineageTag: 8e73f3c2-2352-459a-83ef-1534a20c3ae6
+
+	measure 'Subtitle Manager' =
+			VAR _new = CALCULATE ( [Attrition Rate], Employees[Manager Tenure Band] = "0-1 yrs" )
+			VAR _settled = CALCULATE ( [Attrition Rate], Employees[Manager Tenure Band] = "5+ yrs" )
+			RETURN
+			    IF (
+			        _settled > 0 && NOT ISBLANK ( _new ),
+			        "Under two years with the same manager: " & FORMAT ( _new, "0.0%" ) & " attrition, " & FORMAT ( DIVIDE ( _new, _settled ), "0.0" ) & " times an established relationship"
+			    )
+		displayFolder: Subtitles
+		lineageTag: a1ae758e-8a45-44d7-91ed-0e7f31c79951
+
+	measure 'Subtitle Promotion' =
+			VAR _recent = CALCULATE ( [Attrition Rate], Employees[Promotion Gap Band] = "0-1 yrs" )
+			VAR _long = CALCULATE ( [Attrition Rate], Employees[Promotion Gap Band] = "8+ yrs" )
+			RETURN
+			    IF (
+			        NOT ISBLANK ( _recent ) && NOT ISBLANK ( _long ),
+			        "Long waits for promotion " & IF ( _long <= _recent, "do not raise attrition: ", "raise attrition: " )
+			            & FORMAT ( _long, "0.0%" ) & " at 8+ years vs " & FORMAT ( _recent, "0.0%" ) & " at 0-1 years"
+			    )
+		displayFolder: Subtitles
+		lineageTag: e1479db4-3da0-496a-bf42-0fe21702df6d
+
+	measure 'Subtitle Heatmap' =
+			VAR _grpLeavers = CALCULATE ( [Leavers], Employees[Overtime] = "Yes", Employees[Job Level] = 1 )
+			VAR _grpHeadcount = CALCULATE ( [Headcount], Employees[Overtime] = "Yes", Employees[Job Level] = 1 )
+			RETURN
+			    IF (
+			        _grpHeadcount > 0,
+			        FORMAT ( DIVIDE ( _grpLeavers, _grpHeadcount ), "0.0%" ) & " of entry-level staff working overtime have left, against "
+			            & FORMAT ( DIVIDE ( [Leavers] - _grpLeavers, [Headcount] - _grpHeadcount ), "0.0%" ) & " of everyone else"
+			    )
+		displayFolder: Subtitles
+		lineageTag: da520560-2f15-496d-9424-7fbbae5022d8
+
+	measure 'Subtitle Income by Level' =
+			// Pay gap within the same job level, weighted by where the leavers sit
+			VAR _t =
+			    FILTER (
+			        ADDCOLUMNS ( VALUES ( Employees[Job Level] ), "@n", [Leavers], "@stay", [Avg Income (Stayers)], "@left", [Avg Income (Leavers)] ),
+			        NOT ISBLANK ( [@stay] ) && NOT ISBLANK ( [@left] )
+			    )
+			VAR _within = DIVIDE ( SUMX ( _t, [@n] * ( [@stay] - [@left] ) ), SUMX ( _t, [@n] * [@stay] ) )
+			RETURN
+			    IF (
+			        NOT ISBLANK ( [Income Gap %] ) && NOT ISBLANK ( _within ),
+			        "Leavers earn " & FORMAT ( [Income Gap %], "0%" ) & " less, but just " & FORMAT ( _within, "0%" ) & " less than same-level peers"
+			            & IF ( _within < [Income Gap %] / 2, ": a seniority gap", ": pay differs within levels" )
+			    )
+		displayFolder: Subtitles
+		lineageTag: ef1d09cd-6e02-4803-915d-5cce860a8585
+
+	measure 'Subtitle Salary Slab' =
+			VAR _low = CALCULATE ( [Attrition Rate], Employees[Salary Slab] = "Up to 5k" )
+			VAR _high = CALCULATE ( [Attrition Rate], Employees[Salary Slab] = "15k+" )
+			RETURN
+			    IF (
+			        _high > 0 && NOT ISBLANK ( _low ),
+			        "Staff earning under 5K a month leave at " & FORMAT ( _low, "0.0%" ) & ", " & FORMAT ( DIVIDE ( _low, _high ), "0.0" ) & " times the rate of those above 15K"
+			    )
+		displayFolder: Subtitles
+		lineageTag: d88b74e0-00cf-460b-aa52-5899585e9ae4
+
+	measure 'Subtitle Stock Options' =
+			VAR _none = [Attrition Rate (No Stock)]
+			VAR _any = [Attrition Rate (With Stock)]
+			RETURN
+			    IF (
+			        NOT ISBLANK ( _none ) && NOT ISBLANK ( _any ),
+			        "Without stock options " & FORMAT ( _none, "0.0%" ) & " leave; any grant "
+			            & IF ( _any < _none, "brings that down to ", "still sees " ) & FORMAT ( _any, "0.0%" )
+			    )
+		displayFolder: Subtitles
+		lineageTag: 386573e2-ac33-44eb-8926-e8fb6f5d6016
+
+	measure 'Subtitle Business Travel' =
+			VAR _freq = CALCULATE ( [Attrition Rate], Employees[Business Travel] = "Travel Frequently" )
+			VAR _none = CALCULATE ( [Attrition Rate], Employees[Business Travel] = "Non-Travel" )
+			RETURN
+			    IF (
+			        _none > 0 && NOT ISBLANK ( _freq ),
+			        "Frequent travellers leave at " & FORMAT ( DIVIDE ( _freq, _none ), "0.0" ) & " times the rate of those who do not travel"
+			    )
+		displayFolder: Subtitles
+		lineageTag: d81df996-cbee-4ad5-87cb-6cd141adef3a
+
+	measure 'Subtitle Work-Life Balance' =
+			VAR _bad = CALCULATE ( [Attrition Rate], Employees[Work-Life Balance Level] = "Bad" )
+			VAR _better = CALCULATE ( [Attrition Rate], Employees[Work-Life Balance Level] = "Better" )
+			VAR _best = CALCULATE ( [Attrition Rate], Employees[Work-Life Balance Level] = "Best" )
+			RETURN
+			    IF (
+			        NOT ISBLANK ( _bad ),
+			        "Bad balance: " & FORMAT ( DIVIDE ( _bad, [Attrition Rate] ), "0.0" ) & " times the average attrition"
+			            & IF ( _best > _better, ". Best offers no extra protection" )
+			    )
+		displayFolder: Subtitles
+		lineageTag: e89737fc-7c3d-46b6-8e01-30da6d591f25
+
+	measure 'Subtitle Risk Factors Table' =
+			VAR _t = TOPN ( 3, FILTER ( ADDCOLUMNS ( ALL ( 'Driver Segments' ), "@excess", [Excess Leavers] ), NOT ISBLANK ( [@excess] ) ), [@excess], DESC )
+			RETURN
+			    IF (
+			        COUNTROWS ( _t ) > 0,
+			        CONCATENATEX ( _t, 'Driver Segments'[Factor], ", ", [@excess], DESC ) & " add the most leavers above the average rate, led by "
+			            & FORMAT ( MAXX ( _t, [@excess] ), "0" ) & " extra leavers"
+			    )
+		displayFolder: Subtitles
+		lineageTag: 8fe1cc6d-056f-4f88-a3b7-a3d02f4c8621
+
+	measure 'Subtitle Action List' =
+			VAR _n = [High-Risk Active Employees]
+			VAR _noStock = DIVIDE ( CALCULATE ( [Active Employees], Employees[Risk Score] >= 4, Employees[Stock Option Level] = 0 ), _n )
+			VAR _entry = DIVIDE ( CALCULATE ( [Active Employees], Employees[Risk Score] >= 4, Employees[Job Level] = 1 ), _n )
+			RETURN
+			    IF (
+			        _n > 0,
+			        FORMAT ( _noStock, "0%" ) & " hold no stock options and " & FORMAT ( _entry, "0%" ) & " are entry level"
+			            & IF ( MAX ( _noStock, _entry ) > 0.5, ": targeted grants and clear career paths would reach most of them" )
+			    )
+		displayFolder: Subtitles
+		lineageTag: 7e17a9fb-98b1-45ed-83da-140cd84ddc49
+
+	measure 'Subtitle Risk Score' =
+			VAR _three = CALCULATE ( [Attrition Rate], Employees[Risk Score] = 3 )
+			VAR _four = CALCULATE ( [Attrition Rate], Employees[Risk Score] = 4 )
+			RETURN
+			    IF (
+			        NOT ISBLANK ( _three ) && NOT ISBLANK ( _four ),
+			        "Attrition jumps from " & FORMAT ( _three, "0.0%" ) & " at 3 factors to " & FORMAT ( _four, "0.0%" ) & " at 4, the action-list cut-off"
+			    )
+		displayFolder: Subtitles
+		lineageTag: 6fd77c1f-bb3b-4a01-a0fc-cd59dfa8fd74
+
+	measure 'Subtitle Driver Explorer' =
+			VAR _segments =
+			    FILTER (
+			        ADDCOLUMNS ( VALUES ( 'Driver Segments'[Segment] ), "@rate", [Segment Attrition %], "@n", [Segment Headcount] ),
+			        [@n] >= 30
+			    )
+			VAR _high = TOPN ( 1, _segments, [@rate], DESC )
+			VAR _low = TOPN ( 1, _segments, [@rate], ASC )
+			VAR _highRate = MAXX ( _high, [@rate] )
+			RETURN
+			    IF (
+			        HASONEVALUE ( 'Driver Segments'[Driver] ) && COUNTROWS ( _segments ) > 1,
+			        "Highest: " & MAXX ( _high, 'Driver Segments'[Segment] ) & " at " & FORMAT ( _highRate, "0.0%" ) & " ("
+			            & FORMAT ( DIVIDE ( _highRate, [Attrition Rate] ), "0.0" ) & " times the average). Lowest: "
+			            & MAXX ( _low, 'Driver Segments'[Segment] ) & " at " & FORMAT ( MAXX ( _low, [@rate] ), "0.0%" )
+			    )
+		displayFolder: Subtitles
+		lineageTag: 7f990c54-fc72-4604-ab58-aa99a497852c
+
+	measure 'Subtitle Main Menu' =
+			"HR Attrition Analytics  ·  " & FORMAT ( [Headcount], "#,0" ) & " employees  ·  " & FORMAT ( [Leavers], "#,0" ) & " leavers"
+		displayFolder: Subtitles
+		lineageTag: e6a03d00-9f06-416d-9ea9-1bb3bd3aec18
+
+	column Value
+		dataType: int64
+		isHidden
+		lineageTag: df3bbd5e-3958-49de-8adc-ee2e4e3a7688
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Value]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _Measures = calculated
+		mode: import
+		source = ROW ( "Value", 0 )
+
