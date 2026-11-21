@@ -63,7 +63,7 @@ On the full dataset:
 
 **Model at a glance:** 4 tables (`Employees`, `Driver Segments`, `Key Findings`, `_Measures`) and 91 measures, organised into display folders.
 
-## Open it yourself
+## Setup
 
 1. Install [Power BI Desktop](https://powerbi.microsoft.com/desktop/) (a recent version that supports Power BI Projects).
 2. Clone or download this repository.
